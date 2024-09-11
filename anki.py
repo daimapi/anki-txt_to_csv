@@ -18,7 +18,6 @@ for path in paths:
             writer = csv.writer(csvfile, delimiter=",")
             for line in txtfile:
                 wlist = []
-                trans = ""
                 c = 0
                 prec = c
                 for _ in line:
@@ -30,6 +29,7 @@ for path in paths:
 
                 print(f"$${wlist}$$")
 
+                trans = ""
                 c = 0
                 prec = c
                 for _ in wlist[1]:
@@ -42,7 +42,6 @@ for path in paths:
                     trans += wlist[1][0 : c + 1]
                 else:
                     trans += wlist[1][prec:c]
-
                 trans = (
                     trans
                     + "<br>"
@@ -51,8 +50,14 @@ for path in paths:
                     + "</div>"
                 )
 
+                if len(wlist) > 3:
+                    tag = wlist[3]
+                else:
+                    tag = ""
+
+
                 # print(f"$${wlist[0]}$$")
                 # print(f"$${wlist[2]}$$")
                 # print(f"$${trans}$$")
                 print(wlist[0] + "," + "," + trans)
-                writer.writerow([wlist[0]] + [] + [trans])
+                writer.writerow([wlist[0]] + [] + [trans] + [tag])
